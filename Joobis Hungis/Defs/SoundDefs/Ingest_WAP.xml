@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+<SoundDef>
+    <defName>Ingest_WAP</defName>
+    <eventNames />
+    <sustain>True</sustain>
+    <context>MapOnly</context>
+    <maxSimultaneous>1</maxSimultaneous>
+    <priorityMode>PrioritizeNearest</priorityMode>
+    <subSounds>
+      <li>
+        <muteWhenPaused>True</muteWhenPaused>
+        <grains>
+          <li Class="AudioGrain_Folder">
+            <clipFolderPath>Things/Ingest_WAP</clipFolderPath>
+          </li>
+        </grains>
+        <volumeRange>30~15</volumeRange>
+        <pitchRange>0.8~1.2</pitchRange>
+        <distRange>0~49.53489</distRange>
+        <sustainLoop>False</sustainLoop>
+        <sustainIntervalRange>0.1~0.5</sustainIntervalRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+
+  </Defs>

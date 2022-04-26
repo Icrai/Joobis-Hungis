@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ModMetaData>
+    <packageId>Icrai.JoobisHungis</packageId>
+    <author>Icrai</author>
+    <supportedVersions>
+        <li>1.3</li>
+    </supportedVersions>
+    <description> V0.1 This mod adds a few food items to make cooking great again.</description>
+</ModMetaData>

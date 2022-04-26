@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ResearchProjectDef>
+    <defName>CarbonatedDrinks</defName>
+    <label>Energy Drink Production</label>
+    <description>Allows you to build succulent drinks.</description>
+    <tab>CarbonatedDrinks</tab>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+            <li>DrugProduction</li>
+    </prerequisites>
+    <baseCost>1050</baseCost>
+<!--     <researchViewX>4.00</researchViewX>
+    <researchViewY>3.20</researchViewY> -->
+  </ResearchProjectDef>
+
+  </Defs>

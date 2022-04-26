@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+<ThingDef ParentName="MakeableDrugBase">
+  <defName>EnergyDrink</defName>
+  <label>Energy Drink</label>
+  <description>A super tasty drink all gamers have come to love. Energy drink increases movement speed and reduces the need for sleep, but at the cost of hunger.</description>
+  <graphicData>
+      <texPath>Things/EnergyDrink</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+  </graphicData>
+  <rotatable>false</rotatable>
+  <stackLimit>25</stackLimit>
+  <statBases>
+      <WorkToMake>600</WorkToMake>
+      <MarketValue>20</MarketValue>
+      <Mass>0.1</Mass>
+      
+  </statBases>
+  <techLevel>Industrial</techLevel>
+  <ingestible>
+      <foodType>Fluid, Processed</foodType>
+      <joyKind>Chemical</joyKind>
+      <joy>0.30</joy>
+      <drugCategory>Social</drugCategory>
+      <ingestSound>Ingest_WAP</ingestSound>
+      <ingestHoldOffsetStanding>
+          <northDefault>
+              <offset>(0.18,0,0)</offset>
+          </northDefault>
+      </ingestHoldOffsetStanding>
+      <ingestCommandString>Drink {0}</ingestCommandString>
+      <ingestReportString>Drinking {0}.</ingestReportString>
+      <chairSearchRadius>25</chairSearchRadius>
+      <canAutoSelectAsFoodForCaravan>false</canAutoSelectAsFoodForCaravan>
+      <tableDesired>false</tableDesired>
+      <outcomeDoers>
+          <li Class="IngestionOutcomeDoer_GiveHediff">
+              <hediffDef>EnergyDrinkHigh</hediffDef>
+              <severity>0.20</severity>
+              <toleranceChemical>EnergyDrink</toleranceChemical>
+          </li>
+          <li Class="IngestionOutcomeDoer_OffsetNeed">
+          <need>Rest</need>
+          <offset>0.2</offset>
+          <toleranceChemical>EnergyDrink</toleranceChemical>
+          </li>
+      </outcomeDoers>
+  </ingestible>
+  <recipeMaker>
+      <researchPrerequisite>CarbonatedDrinks</researchPrerequisite>
+      <recipeUsers>
+          <li>DrugLab</li>
+      </recipeUsers>
+      <soundWorking>Recipe_Brewing</soundWorking>
+  </recipeMaker>
+  <costList>
+      <Neutroamine>1</Neutroamine>
+  </costList>
+  <comps>
+      <li Class="CompProperties_Drug">
+      <chemical>EnergyDrink</chemical>
+      <addictiveness>0.1</addictiveness>
+      </li>
+  </comps>
+</ThingDef>
+
+<HediffDef>
+  <defName>EnergyDrinkHigh</defName>
+  <hediffClass>Hediff_High</hediffClass>
+  <label>Run fast, eat ass</label>
+  <labelNoun>an energy drink high</labelNoun>
+  <description>Energy drinks pack a punch. Moving and energy levels are at an all time high.</description>
+  <defaultLabelColor>(1,0,0.5)</defaultLabelColor>
+  <scenarioCanAdd>true</scenarioCanAdd>
+  <maxSeverity>1.0</maxSeverity>
+  <isBad>false</isBad>
+  <comps>
+          <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.75</severityPerDay>
+        <showHoursToRecover>true</showHoursToRecover>
+      </li>
+    </comps>
+      <stages>
+        <li>
+
+          <capMods>
+            <li>
+              <capacity>Consciousness</capacity>
+              <offset>0.20</offset>
+            </li>
+            <li>
+              <capacity>Sight</capacity>
+              <offset>0.35</offset>
+            </li>
+            <li>
+              <capacity>Moving</capacity>
+              <offset>0.50</offset>
+            </li>
+          </capMods>
+        </li>
+      </stages>
+  </HediffDef>
+  
+  <ThoughtDef>
+    <defName>EnergyDrinkHigh</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>EnergyDrinkHigh</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <label>Energy drink buzz</label>
+        <description>I feel like I could fly, almost as Icarus to the sun.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+  <!-- Go-juice addiction -->
+
+  <ChemicalDef>
+    <defName>EnergyDrink</defName>
+    <label>EnergyDrink</label>
+    <addictionHediff>EnergyDrinkAddiction</addictionHediff>
+  </ChemicalDef>
+  
+  <NeedDef ParentName="DrugAddictionNeedBase">
+    <defName>Chemical_Energydrink</defName>
+    <needClass>Need_Chemical</needClass>
+    <label>EnergyDrink</label>
+    <description>Because of an energy drink addiction, this person needs to regularly consume the drug to avoid withdrawal symptoms.</description>
+    <fallPerDay>0.333</fallPerDay>
+    <listPriority>45</listPriority>
+  </NeedDef>
+
+  <HediffDef ParentName="AddictionBase">
+    <defName>EnergyDrinkAddiction</defName>
+    <label>Energy drink addiction</label>
+    <description>The monstrous amount of caffine in these drinks has made this pawn dependent on the chemical. Without regular doses of energy drinks, withdrawal symptoms will begin. However, extended abstinence will force the brain to adapt back to its normal state, resolving the addiction.</description>
+    <hediffClass>Hediff_Addiction</hediffClass>
+    <causesNeed>Chemical_Energydrink</causesNeed>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.045</severityPerDay>
+        <showDaysToRecover>true</showDaysToRecover>
+      </li>
+    </comps>
+    <stages>
+      <li>
+      </li>
+      <li>
+        <label>withdrawal</label>
+        <painFactor>3</painFactor>
+        <restFallFactorOffset>0.3</restFallFactorOffset>
+        <hungerRateFactorOffset>0.5</hungerRateFactorOffset>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.20</offset>
+          </li>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.50</offset>
+          </li>
+          <li>
+            <capacity>Sight</capacity>
+            <offset>-0.20</offset>
+          </li>
+          <li>
+            <capacity>BloodPumping</capacity>
+            <offset>-0.20</offset>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <offset>-0.10</offset>
+          </li>
+        </capMods>
+        <mentalStateGivers>
+          <li>
+            <mentalState>Binging_DrugExtreme</mentalState>
+            <mtbDays>40</mtbDays>
+          </li>
+          <li>
+            <mentalState>Wander_Psychotic</mentalState>
+            <mtbDays>10</mtbDays>
+          </li>
+        </mentalStateGivers>
+      </li>
+    </stages>
+  </HediffDef>
+  
+  <ThoughtDef>
+    <defName>EnergyDrinkWithdrawal</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>EnergyDrinkAddiction</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <visible>false</visible>
+      </li>
+      <li>
+        <label>EnergyDrink withdrawal</label>
+        <description>I'm all fuzzy and can't think straight. My limbs feel heavy, I'm tired and hungry, everything hurts. And why won't my eyes focus properly?</description>
+        <baseMoodEffect>-22</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <HediffDef ParentName="DrugToleranceBase">
+    <defName>EnergyDrinkTolerance</defName>
+    <label>EnergyDrink tolerance</label>
+    <description>A built-up tolerance to go-juice. The more severe this tolerance is, the more go-juice it takes to get the same effect.</description>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.015</severityPerDay>
+      </li>
+      <li Class="HediffCompProperties_DrugEffectFactor">
+        <chemical>EnergyDrink</chemical>
+      </li>
+    </comps>
+    <hediffGivers>
+      <li Class="HediffGiver_RandomDrugEffect">
+        <hediff>ChemicalDamageModerate</hediff>
+        <severityToMtbDaysCurve>
+          <points>
+            <li>(0.45, 99999)</li>
+            <li>(0.5, 120)</li>
+            <li>(1, 90)</li>
+          </points>
+        </severityToMtbDaysCurve>
+        <partsToAffect>
+          <li>Brain</li>
+        </partsToAffect>
+      </li>
+    </hediffGivers>
+  </HediffDef>
+
+</Defs>
