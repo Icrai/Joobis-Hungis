@@ -1,0 +1,4 @@
+F:\SteamLibrary\steamapps\common\RimWorld\Mods\Joobis Hungis\Assemblies\Joobis Hungis.dll
+E:\Rimworld Modding\Joobis Hungis Project Files\Joobis Hungis\Joobis Hungis\Joobis Hungis\Joobis Hungis\obj\Debug\Joobis Hungis.csproj.AssemblyReference.cache
+E:\Rimworld Modding\Joobis Hungis Project Files\Joobis Hungis\Joobis Hungis\Joobis Hungis\Joobis Hungis\obj\Debug\Joobis Hungis.csproj.CoreCompileInputs.cache
+E:\Rimworld Modding\Joobis Hungis Project Files\Joobis Hungis\Joobis Hungis\Joobis Hungis\Joobis Hungis\obj\Debug\Joobis Hungis.dll
